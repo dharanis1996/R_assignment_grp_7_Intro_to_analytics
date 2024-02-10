@@ -4,32 +4,32 @@ editor_options:
     wrap: 72
 ---
 
-# Load required packages
+#1 Load required packages
 
 library(dplyr) library(ggplot2) library(tidyr)
 
-# Load the dataset
+#2 Load the dataset
 
-setwd("C:/Users/dhara/GBC/R_Assignment_4066/") dataset \<-
-read.csv("ds_salaries.csv")
+setwd("C:/Users/dhara/GBC/R_Assignment_4066/") 
+dataset <- read.csv("ds_salaries.csv")
 
-# Print the structure of the dataset
+#3 Print the structure of the dataset
 
 str(dataset)
 
-# List the variables in the dataset
+#4 List the variables in the dataset
 
 variables \<- names(dataset) print(variables)
 
-# Print the top 15 rows of the dataset
+#5 Print the top 15 rows of the dataset
 
 head(dataset, n=15)
 
-# Making a dataframe
+#6 Making a dataframe
 
 df_salaries \<- data.frame(dataset)
 
-# User-defined function using a variable from the dataset
+#7 User-defined function using a variable from the dataset
 
 myFunction \<- function(df, var) { return(max(df[[var]])) }
 myFunction(df_salaries, "salary_in_usd")
@@ -37,12 +37,12 @@ myFunction(df_salaries, "salary_in_usd")
 fun1 \<- function(df, var) { return(unique(df[[var]])) }
 fun1(df_salaries, "job_title")
 
-# Filter rows based on logical criteria
+#8 Filter rows based on logical criteria
 
 filtered_data \<- df_salaries %\>% filter(job_title == "Data Analyst",
 company_size=="L") filtered_data
 
-# Identify dependent and independent variables and create a new data frame
+#9 Identify dependent and independent variables and create a new data frame
 
 dependent_var \<- "salary" independent_vars \<- c("job_title",
 "experience_level", "company_size")
@@ -57,38 +57,38 @@ independent_vars, direction = "long" )
 merged_df \<- merge(dependent_df, reshaped_df, by = "salary")
 print(merged_df)
 
-# Remove missing values
+#10 Remove missing values
 
 dataset \<- na.omit(dataset)
 
-# Identify and Remove duplicated data
+#11 Identify and Remove duplicated data
 
 duplicate_values \<- duplicated(dataset) duplicate_values dataset \<-
 distinct(dataset)
 
-# Reorder rows in descending order
+#12 Reorder rows in descending order
 
 dataset %\>% arrange(desc(salary) , desc(salary_in_usd))
 
-# Rename column names
+#13 Rename column names
 
 dataset \<- dataset %\>% rename(currency = salary_currency) dataset
 
-# Add new variables using a mathematical function
+#14 Add new variables using a mathematical function
 
 dataset \<- dataset %\>% mutate(Biweekly_salary = salary / 26) dataset
 
-# Create a training set using random number generator engine
+#15 Create a training set using random number generator engine
 
 set.seed(123) n_train \<- 3 train_indices \<-
 sample(1:nrow(df_salaries), n_train) train_set \<-
 df_salaries[train_indices, ] print(train_set)
 
-# Summary statistics
+#16 Summary statistics
 
 summary(dataset)
 
-# Statistical functions on numerical variables
+#17 Statistical functions on numerical variables
 
 mean_value \<-
 mean(dataset$salary) median_value <- median(dataset$salary) mode_value
